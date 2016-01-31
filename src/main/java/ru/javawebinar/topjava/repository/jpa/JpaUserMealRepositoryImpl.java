@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Repository
-@Transactional
+@Transactional(readOnly = true)
 public class JpaUserMealRepositoryImpl implements UserMealRepository {
 
     @PersistenceContext ()

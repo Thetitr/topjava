@@ -3,6 +3,7 @@ package ru.javawebinar.topjava.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 public class UserMeal extends BaseEntity {
 
     @Column(name = "date_time")
-    @NotEmpty
+
     protected LocalDateTime dateTime;
 
 
@@ -23,7 +24,7 @@ public class UserMeal extends BaseEntity {
     protected String description;
 
     @Column(name="calories")
-    @NotEmpty
+    @NotNull
     protected int calories;
 
     public User getUser() {
@@ -34,7 +35,7 @@ public class UserMeal extends BaseEntity {
         this.user = user;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     public UserMeal(LocalDateTime dateTime, String description, int calories) {
