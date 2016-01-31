@@ -13,9 +13,11 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "meals")
 public class UserMeal extends BaseEntity {
+    public UserMeal() {
+    }
 
     @Column(name = "date_time")
-
+    @NotNull
     protected LocalDateTime dateTime;
 
 
