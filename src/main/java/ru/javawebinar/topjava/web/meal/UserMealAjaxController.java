@@ -31,15 +31,12 @@ public class UserMealAjaxController extends AbstractUserMealController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void updateOrCreate(@RequestParam("id") int id,
-                               @RequestParam("datetime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTime,
-                               @RequestParam("description") String description,
-                               @RequestParam("calories") int calories) {
-        UserMeal meal = new UserMeal(id, dateTime, description, calories);
-        if (id == 0) {
+    public void updateOrCreate(UserMeal meal) {
+
+        if (meal.getId()== 0) {
             super.create(meal);
         } else {
-            super.update(meal, id);
+            super.update(meal, meal.getId());
         }
     }
 
