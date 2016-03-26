@@ -2,6 +2,7 @@ package ru.javawebinar.topjava.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -33,6 +34,7 @@ public class UserMeal extends BaseEntity implements Serializable {
 
     @Column(name = "date_time", nullable = false)
     @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     protected LocalDateTime dateTime;
 
     @Column(name = "description", nullable = false)
@@ -40,7 +42,8 @@ public class UserMeal extends BaseEntity implements Serializable {
     protected String description;
 
     @Column(name = "calories", nullable = false)
-    @Range(min = 10, max = 5000)
+    @NotNull
+    @Range(min = 10, max = 5000, message = "must be between 10 and 5000")
     protected int calories;
 
     @ManyToOne(fetch = FetchType.LAZY)
